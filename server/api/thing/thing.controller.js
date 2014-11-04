@@ -31,13 +31,13 @@ exports.index = function(req, res) {
         return {
             href: 'http://localhost:9000/api/things?page=0&per_page=3',
             next: {
-                href: 'http://localhost:9000/api/things?page=' + nextPage + '&per_page=' + per_page,
+                href: 'http://localhost:9000/api/things?page=' + nextPage + '&per_page=' + per_page
             },
             previous: {
-                href: 'http://localhost:9000/api/things?page=' + previousPage + '&per_page=' + per_page,
+                href: 'http://localhost:9000/api/things?page=' + previousPage + '&per_page=' + per_page
             },
-            items: data
-        }
+            data: data
+        };
     }
 
     if (_.isNumber(page) && _.isNumber(per_page)) {

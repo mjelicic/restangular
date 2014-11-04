@@ -1,24 +1,30 @@
 'use strict';
 
 angular.module('restangularTestApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Restangular) {
     $scope.awesomeThings = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    var things = Restangular.all('things');
+
+    things.getList().then(function (things) {
+      $scope.awesomeThings = things;
+
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
+
+    $scope.addThing = function(newThing) {
+      if(newThing === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+
+      things.post({ name: $scope.newThing }).then(function() {
+        $scope.newThing = '';
+      });
     };
 
     $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+      thing.remove();
     };
 
     $scope.$on('$destroy', function () {
