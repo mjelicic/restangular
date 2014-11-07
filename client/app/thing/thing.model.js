@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('restangularTestApp')
-  .factory('Thing', function (Restangular) {
+  .factory('ThingModel', function (Restangular) {
     var things = Restangular.all('things');
     var thingMetaData;
 
@@ -22,7 +22,7 @@ angular.module('restangularTestApp')
         return thing.remove();
       },
       nextPage: function () {
-        return Restangular.allUrl('things', thingMetaData.next.href).getList();
+        return Restangular.allUrl('things', thingMetaData.next.href).getList().then(updateMetaData);
       },
       extendWithModel: function (thing) {
         return Restangular.restangularizeElement(null, thing, 'things');

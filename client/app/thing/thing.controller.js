@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('restangularTestApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Thing) {
+  .controller('ThingCtrl', function ($scope, $http, socket, ThingModel) {
     $scope.awesomeThings = [];
 
-    Thing.all().then(function (things) {
+    ThingModel.all().then(function (things) {
 
       $scope.awesomeThings = things;
 
@@ -17,7 +17,7 @@ angular.module('restangularTestApp')
         return;
       }
 
-      Thing.add(newThing).then(function() {
+      ThingModel.add(newThing).then(function() {
         $scope.newThing = '';
       });
     };
@@ -27,7 +27,7 @@ angular.module('restangularTestApp')
     };
 
     $scope.loadMore = function () {
-      Thing.nextPage().then(function (moreThings) {
+      ThingModel.nextPage().then(function (moreThings) {
         $scope.awesomeThings.push.apply($scope.awesomeThings, moreThings);
       });
     };

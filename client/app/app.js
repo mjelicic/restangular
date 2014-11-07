@@ -10,7 +10,7 @@ angular.module('restangularTestApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/things');
 
     $locationProvider.html5Mode(true);
   });
