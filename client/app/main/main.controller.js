@@ -5,6 +5,7 @@ angular.module('restangularTestApp')
     $scope.awesomeThings = [];
 
     Thing.all().then(function (things) {
+
       $scope.awesomeThings = things;
 
       socket.syncUpdates('thing', $scope.awesomeThings);
@@ -23,6 +24,13 @@ angular.module('restangularTestApp')
 
     $scope.deleteThing = function(thing) {
       thing.remove();
+    };
+
+    $scope.loadMore = function () {
+      Thing.nextPage($scope.awesomeThings).then(function (moreThings) {
+        $scope.awesomeThings.push.apply($scope.awesomeThings, moreThings);
+        $scope.awesomeThings.meta = moreThings.meta;
+      });
     };
 
     $scope.$on('$destroy', function () {

@@ -24,6 +24,7 @@ angular.module('restangularTestApp')
       if (operation === 'getList') {
         // .. and handle the data and meta data
         extractedData = data.items;
+        extractedData.meta = data.meta;
       } else {
         extractedData = data;
       }

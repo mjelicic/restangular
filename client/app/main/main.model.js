@@ -14,11 +14,11 @@ angular.module('restangularTestApp')
       remove: function (thing) {
         return thing.remove();
       },
+      nextPage: function (collection) {
+        return Restangular.allUrl('things', collection.meta.next.href).getList();
+      },
       extendWithModel: function (thing) {
         return Restangular.restangularizeElement(null, thing, 'things');
       }
-
-
-
     };
   });
