@@ -27,9 +27,8 @@ angular.module('restangularTestApp')
     };
 
     $scope.loadMore = function () {
-      Thing.nextPage($scope.awesomeThings).then(function (moreThings) {
+      Thing.nextPage().then(function (moreThings) {
         $scope.awesomeThings.push.apply($scope.awesomeThings, moreThings);
-        $scope.awesomeThings.meta = moreThings.meta;
       });
     };
 
