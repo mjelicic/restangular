@@ -1,12 +1,12 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: ThingCtrl', function () {
 
   // load the controller's module
   beforeEach(module('restangularTestApp'));
   beforeEach(module('socketMock'));
 
-  var MainCtrl,
+  var ThingCtrl,
       scope,
       $httpBackend;
 
@@ -19,7 +19,7 @@ describe('Controller: MainCtrl', function () {
       });
 
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    ThingCtrl = $controller('ThingCtrl', {
       $scope: scope
     });
   }));

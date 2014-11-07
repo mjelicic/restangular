@@ -1,12 +1,16 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-      </ul>
-    </div>
+
+  <h1>Things: </h1>
+
+  <div class="grid-items">
+    <a href="javascript:void(0)" class="grid-item" ng-repeat="thing in awesomeThings">
+      <h1>{{thing.name}}</h1>
+      <p>{{thing.info}}</p>
+    </a>
   </div>
+
+
+
 
   <form class="thing-form">
     <label>Syncs in realtime across clients</label>
