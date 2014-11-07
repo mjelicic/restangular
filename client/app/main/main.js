@@ -13,12 +13,21 @@ angular.module('restangularTestApp')
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('/api');
 
-    RestangularProvider.setResponseExtractor(function(response) {
-      return response.data;
-    });
-
     RestangularProvider.setRestangularFields({
       id: '_id'
+    });
+
+    // add a response intereceptor
+    RestangularProvider.addResponseInterceptor(function(data, operation) {
+      var extractedData;
+      // .. to look for getList operations
+      if (operation === 'getList') {
+        // .. and handle the data and meta data
+        extractedData = data.items;
+      } else {
+        extractedData = data;
+      }
+      return extractedData;
     });
 
   })

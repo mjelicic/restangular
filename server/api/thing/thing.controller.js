@@ -30,13 +30,16 @@ exports.index = function(req, res) {
     function addLinks(data) {
         return {
             href: 'http://localhost:9000/api/things?page=0&per_page=3',
-            next: {
+            meta: {
+              count: things.lenght,
+              next: {
                 href: 'http://localhost:9000/api/things?page=' + nextPage + '&per_page=' + per_page
-            },
-            previous: {
+              },
+              previous: {
                 href: 'http://localhost:9000/api/things?page=' + previousPage + '&per_page=' + per_page
+              }
             },
-            data: data
+            items: data
         };
     }
 

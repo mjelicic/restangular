@@ -15,7 +15,7 @@ describe('Controller: MainCtrl', function () {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/things')
       .respond({
-        data: ['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']
+        items: ['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']
       });
 
     scope = $rootScope.$new();

@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('restangularTestApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Restangular) {
+  .controller('MainCtrl', function ($scope, $http, socket, Thing) {
     $scope.awesomeThings = [];
 
-    var things = Restangular.all('things');
-
-    things.getList().then(function (things) {
+    Thing.all().then(function (things) {
       $scope.awesomeThings = things;
 
       socket.syncUpdates('thing', $scope.awesomeThings);
@@ -18,7 +16,7 @@ angular.module('restangularTestApp')
         return;
       }
 
-      things.post({ name: $scope.newThing }).then(function() {
+      Thing.add(newThing).then(function() {
         $scope.newThing = '';
       });
     };

@@ -1,0 +1,2 @@
+[x] Refactor socket to decorate new items with restangular.
+[ ] Create simple pagination using retangular and just page references

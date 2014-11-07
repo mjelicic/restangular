@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('restangularTestApp')
-  .factory('socket', function(socketFactory) {
+  .factory('socket', function(socketFactory, Thing) {
 
     // socket.io now auto-configures its connection when we ommit a connection url
     var ioSocket = io('', {
@@ -35,6 +35,7 @@ angular.module('restangularTestApp')
          * Syncs item creation/updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
+          Thing.extendWithModel(item);
           var oldItem = _.find(array, {_id: item._id});
           var index = array.indexOf(oldItem);
           var event = 'created';
