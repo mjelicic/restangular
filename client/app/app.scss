@@ -1,6 +1,6 @@
-@import "bourbon/dist/bourbon";
-@import "neat/app/assets/stylesheets/neat";
-@import "bitters/app/assets/stylesheets/base";
+@import "bourbon/bourbon";
+@import "base/base";
+@import "neat/neat";
 
 //Breakpoints
 $medium-screen: em(640);
