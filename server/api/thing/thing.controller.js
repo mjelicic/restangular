@@ -15,8 +15,6 @@ var validator = require('validator');
 var Thing = require('./thing.model');
 
 
-
-// Get list of things
 exports.index = function(req, res) {
   Thing.find(function (err, things) {
     if(err) { return handleError(res, err); }
@@ -27,7 +25,7 @@ exports.index = function(req, res) {
     var per_page = req.query.per_page ? validator.toInt(req.query.per_page) : 5;
     var start = page * per_page;
 
-    function addLinks(data) {
+    function response(data) {
         return {
             href: 'http://localhost:9000/api/things?page=0&per_page=3',
             meta: {
@@ -47,11 +45,10 @@ exports.index = function(req, res) {
         things = things.slice(start, start + per_page);
     }
 
-    return res.json(200, addLinks(things));
+    return res.json(response(things));
   });
 };
 
-// Get a single thing
 exports.show = function(req, res) {
   Thing.findById(req.params.id, function (err, thing) {
     if(err) { return handleError(res, err); }
@@ -60,7 +57,6 @@ exports.show = function(req, res) {
   });
 };
 
-// Creates a new thing in the DB.
 exports.create = function(req, res) {
   Thing.create(req.body, function(err, thing) {
     if(err) { return handleError(res, err); }
@@ -68,7 +64,6 @@ exports.create = function(req, res) {
   });
 };
 
-// Updates an existing thing in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Thing.findById(req.params.id, function (err, thing) {
@@ -80,9 +75,11 @@ exports.update = function(req, res) {
       return res.json(200, thing);
     });
   });
+
+  BlogPost.findById(123).populate('comments').exec(func)
+
 };
 
-// Deletes a thing from the DB.
 exports.destroy = function(req, res) {
   Thing.findById(req.params.id, function (err, thing) {
     if(err) { return handleError(res, err); }

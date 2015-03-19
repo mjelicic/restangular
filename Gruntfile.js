@@ -334,7 +334,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
+    //  plugin for rewriting static resource URLs found in your HTML and CSS.
     cdnify: {
       dist: {
         html: ['<%= location.dist %>/public/*.html']
@@ -440,6 +440,9 @@ module.exports = function (grunt) {
       src: ['server/**/*.spec.js']
     },
 
+    /*Protractor is an end-to-end test framework for AngularJS applications.
+    Protractor is a Node.js program built on top of WebDriverJS.
+    Protractor runs tests against your application running in a real browser, interacting with it as a user would.*/
     protractor: {
       options: {
         configFile: 'protractor.conf.js'
@@ -541,7 +544,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
